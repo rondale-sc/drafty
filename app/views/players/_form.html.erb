@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :team_id %>
-    <%= f.select(:team_id, Team.find(:all).collect {|c| [ c.name, c.id ]}, {:include_blank => true} ) %>
+    <%= f.select(:team_id, Team.find(:all).collect {|c| [ c.player_name, c.id ]}, {:include_blank => true} ) %>
   </div>
     </select>
   </div>
