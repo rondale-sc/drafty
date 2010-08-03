@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">	
 <head>
   <title>Drafty</title>
   <%= stylesheet_link_tag :all %>
@@ -11,7 +12,13 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-
+  <div id="nav">
+            <%=link_to "Players", root_path, :id => "nav_link",  :style => "padding-top:0px;color:#9d3636;font-weight:300;" %>
+          <span>&nbsp;|&nbsp;</span>
+          <%=link_to "Assignment", assignment_path, :id => "nav_link",  :style => "padding-top:0px;color:#777777" %>
+          <span>&nbsp;|&nbsp;</span>	
+         <%=link_to "Teams", teams_path, :id => "nav_link",  :style => "padding-top:0px;color:#777777" %>
+  </div>
 <%= yield %>
 
 </body>

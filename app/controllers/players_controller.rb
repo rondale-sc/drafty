@@ -98,4 +98,8 @@ class PlayersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def assignment
+    @player = Player.order("rank")
+  end
 end
