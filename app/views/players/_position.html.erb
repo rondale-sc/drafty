@@ -1,7 +1,7 @@
 <table>
 <% position.each do |player| %>
   <tr class="livesearch">
-    <td><%= player.first_name player.last_name %></td>
+    <td><%= player.first_name + " " + player.last_name %></td>
     <td><%= player.position %></td>
     <td><%= player.team %></td>
     <td>Rank: <%= player.rank %></td>
