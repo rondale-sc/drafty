@@ -12,14 +12,14 @@
 ActiveRecord::Schema.define(:version => 20100803004031) do
 
   create_table "players", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "position"
-    t.string   "team"
-    t.integer  "rank",       :limit => 255
-    t.boolean  "selected"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.string    "position"
+    t.string    "team"
+    t.integer   "rank"
+    t.boolean   "selected"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
 end

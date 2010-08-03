@@ -53,7 +53,7 @@ task :get_ranking, :needs => :environment  do |t, args|
     end
     
      @players.each do |player|
-     pl = Player.new
+        pl = Player.new
 
       pl.rank = player[:rank].to_i
       pl.first_name = player[:name].split(',')[0].split[0].strip.gsub(' ', '')  #first name
