@@ -100,7 +100,7 @@ class PlayersController < ApplicationController
   end
 
   def assignment
-    @player = Player.order("rank")
+    @player = Player.available.order("rank")
     @teams = Team.order("name")
   end
 end

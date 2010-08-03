@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
   belongs_to :team
 
-  scope :available, where("selected != ?", true)
+  scope :available, where("team_id is ?", nil)
 end
