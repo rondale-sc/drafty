@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_filter :authenticate, :only => [ :edit, :delete ]
+  before_filter :authenticate, :only => [ :edit, :delete, :create ]
   # GET /teams
   # GET /teams.xml
   def index

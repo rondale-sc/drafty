@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_filter :authenticate, :only => [ :edit, :delete ]
+  before_filter :authenticate, :only => [ :edit, :create, :delete ]
   # GET /players
   # GET /players.xml
   def index
