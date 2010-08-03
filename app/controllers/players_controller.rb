@@ -2,12 +2,12 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.xml
   def index
-    @quarter_b =  Player.order("rank").limit(5).where("position = ?", "QB")
-    @running_b =  Player.order("rank").limit(5).where("position = ?", "RB")
-    @place_k   =  Player.order("rank").limit(5).where("position = ?", "K")
-    @tight_e   =  Player.order("rank").limit(5).where("position = ?", "TE")
-    @defense   =  Player.order("rank").limit(5).where("position = ?", "D/S")
-    @wide_r    =  Player.order("rank").limit(5).where("position = ?", "WR")
+    @quarter_b =  Player.order("rank").limit(5).where("position LIKE ?", "%QB")
+    @running_b =  Player.order("rank").limit(5).where("position LIKE ?", "%RB")
+    @place_k   =  Player.order("rank").limit(5).where("position LIKE ?", "%K")
+    @tight_e   =  Player.order("rank").limit(5).where("position LIKE ?", "%TE")
+    @defense   =  Player.order("rank").limit(5).where("position LIKE ?", "%D/S")
+    @wide_r    =  Player.order("rank").limit(5).where("position LIKE ?", "%WR")
 
 
 #    t = Player.arel_table
