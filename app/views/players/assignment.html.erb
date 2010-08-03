@@ -3,10 +3,8 @@
 <table>
 <% @player.each do |player| %>
   <tr class="livesearch">
-    <td>(<%=  player.rank %>)<%= player.first_name + " " + player.last_name %></td>
-    <% if params[:lock] %> 
-    <td><%= link_to 'Edit', edit_player_path(player) %></td>
-    <%end%>
+    <td></td> 
+    <td><%= link_to "(#{player.rank})  #{player.first_name}  #{player.last_name}", edit_player_path(player) %></td>
   </tr>
   </br>
 <% end %>

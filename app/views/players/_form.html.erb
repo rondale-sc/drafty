@@ -32,6 +32,12 @@
     <%= f.text_field :rank %>
   </div>
   <div class="field">
+    <%= f.label :team_id %>
+    <%= f.select(:team_id, Team.find(:all).collect {|c| [ c.name, c.id ]}, {:include_blank => true} ) %>
+  </div>
+    </select>
+  </div>
+  <div class="field">
     <%= f.label :selected %><br />
     <%= f.check_box :selected %>
   </div>
