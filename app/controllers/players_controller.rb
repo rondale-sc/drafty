@@ -2,14 +2,21 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.xml
   def index
-#   @players = Player.order("rank")
-    t = Player.arel_table
-    @quarter_b =  Player.order("rank").limit(5).where(t[:position].matches('%QB'))
-    @running_b =  Player.order("rank").limit(5).where(t[:position].matches('%RB'))
-    @place_k   =  Player.order("rank").limit(5).where(t[:position].matches('%K'))
-    @tight_e   =  Player.order("rank").limit(5).where(t[:position].matches('%TE'))
-    @defense   =  Player.order("rank").limit(5).where(t[:position].matches('%D/S'))
-    @wide_r    =  Player.order("rank").limit(5).where(t[:position].matches('%WR'))
+    @quarter_b =  Player.order("rank").limit(5).where("position = ?", "QB")
+    @running_b =  Player.order("rank").limit(5).where("position = ?", "RB")
+    @place_k   =  Player.order("rank").limit(5).where("position = ?", "K")
+    @tight_e   =  Player.order("rank").limit(5).where("position = ?", "TE")
+    @defense   =  Player.order("rank").limit(5).where("position = ?", "D/S")
+    @wide_r    =  Player.order("rank").limit(5).where("position = ?", "WR")
+
+
+#    t = Player.arel_table
+#    @quarter_b =  Player.order("rank").limit(5).where(t[:position].matches('%QB'))
+#    @running_b =  Player.order("rank").limit(5).where(t[:position].matches('%RB'))
+#    @place_k   =  Player.order("rank").limit(5).where(t[:position].matches('%K'))
+#    @tight_e   =  Player.order("rank").limit(5).where(t[:position].matches('%TE'))
+#    @defense   =  Player.order("rank").limit(5).where(t[:position].matches('%D/S'))
+#    @wide_r    =  Player.order("rank").limit(5).where(t[:position].matches('%WR'))
     
     if params[:selected]
      @players = @players.where(:selected => (params[:selected] == "1"))
