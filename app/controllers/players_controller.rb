@@ -3,12 +3,12 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.xml
   def index
-    @quarter_b =  Player.order("rank").limit(5).where("position LIKE ?", "%QB")
-    @running_b =  Player.order("rank").limit(5).where("position LIKE ?", "%RB")
-    @place_k   =  Player.order("rank").limit(5).where("position LIKE ?", "%K")
-    @tight_e   =  Player.order("rank").limit(5).where("position LIKE ?", "%TE")
-    @defense   =  Player.order("rank").limit(5).where("position LIKE ?", "%D/S")
-    @wide_r    =  Player.order("rank").limit(5).where("position LIKE ?", "%WR")
+    @quarter_b =  Player.available.order("rank").limit(5).where("position LIKE ?", "%QB")
+    @running_b =  Player.available.order("rank").limit(5).where("position LIKE ?", "%RB")
+    @place_k   =  Player.available.order("rank").limit(5).where("position LIKE ?", "%K")
+    @tight_e   =  Player.available.order("rank").limit(5).where("position LIKE ?", "%TE")
+    @defense   =  Player.available.order("rank").limit(5).where("position LIKE ?", "%D/S")
+    @wide_r    =  Player.available.order("rank").limit(5).where("position LIKE ?", "%WR")
 
 #    t = Player.arel_table
 #    @quarter_b =  Player.order("rank").limit(5).where(t[:position].matches('%QB'))

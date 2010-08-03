@@ -3,7 +3,6 @@
   <tr class="livesearch">
     <td><%= player.first_name + " " + player.last_name %></td>
     <td><%= player.position %></td>
-    <td><%= player.team %></td>
     <td>Rank: <%= player.rank %></td>
     <% if params[:lock] %> 
     <td><%= link_to 'Edit', edit_player_path(player) %></td>
