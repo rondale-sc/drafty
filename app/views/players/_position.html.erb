@@ -5,7 +5,10 @@
     <td><%= player.position %></td>
     <td><%= player.team %></td>
     <td>Rank: <%= player.rank %></td>
+    <% if params[:lock] %> 
     <td><%= link_to 'Edit', edit_player_path(player) %></td>
+    <%end%>
   </tr>
 <% end %>
+ 
 </table>

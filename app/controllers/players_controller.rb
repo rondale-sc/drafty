@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+ 
   # GET /players
   # GET /players.xml
   def index
@@ -8,7 +9,6 @@ class PlayersController < ApplicationController
     @tight_e   =  Player.order("rank").limit(5).where("position LIKE ?", "%TE")
     @defense   =  Player.order("rank").limit(5).where("position LIKE ?", "%D/S")
     @wide_r    =  Player.order("rank").limit(5).where("position LIKE ?", "%WR")
-
 
 #    t = Player.arel_table
 #    @quarter_b =  Player.order("rank").limit(5).where(t[:position].matches('%QB'))

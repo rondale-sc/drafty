@@ -1,0 +1,14 @@
+<% @teams.each do |team| %>
+  <fieldset>
+    <legend><%= team.name %></legend>
+    <ul>
+    <% team.players.each do |player| %>
+      <li><%= player.first_name + " " + player.last_name %></li>   
+    <%end%>
+  </ul> 
+<% end %>
+</fieldset>
+<br />
+<% if params[:lock] %>
+<%= link_to 'New Team', new_team_path %>
+<% end %>
