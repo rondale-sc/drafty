@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
- 
+  before_filter :authenticate, :only => [ :edit, :delete ]
   # GET /players
   # GET /players.xml
   def index
@@ -103,4 +103,9 @@ class PlayersController < ApplicationController
     @player = Player.available.order("rank")
     @teams = Team.order("name")
   end
+ def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "admin" && password == "ransom"
+    end
+ end
 end

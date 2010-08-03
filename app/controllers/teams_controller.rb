@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_filter :authenticate, :only => [ :edit, :delete ]
   # GET /teams
   # GET /teams.xml
   def index
@@ -78,6 +79,11 @@ class TeamsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(teams_url) }
       format.xml  { head :ok }
+    end
+  end
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "admin" && password == "ransom"
     end
   end
 end
