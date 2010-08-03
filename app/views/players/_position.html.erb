@@ -1,0 +1,13 @@
+<table>
+<% position.each do |player| %>
+  <tr class="livesearch">
+    <td><%= player.first_name %></td>
+    <td><%= player.last_name %></td>
+    <td><%= player.position %></td>
+    <td><%= player.team %></td>
+    <td><%= player.rank %></td>
+    <td><%= player.selected %></td>
+    <td><%= link_to 'Edit', edit_player_path(player) %></td>
+  </tr>
+<% end %>
+</table>
