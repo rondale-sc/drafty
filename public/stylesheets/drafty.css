@@ -100,7 +100,10 @@ a {
   text-align:center;
 }
 
-
+#search, td {
+  font-size:18px;
+  padding-top:16px;
+}
 #nav_link {
 	text-decoration:none;
 	text-align:right;

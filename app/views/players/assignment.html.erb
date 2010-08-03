@@ -1,14 +1,15 @@
-<h1><center><u>Player Search</u></center></h1>
+<h1 style="font-size:96px;"><center>Player Search<span style="font-size:12px;color:#777777;">woot!</span></center></h1><br/><br/>
 <center><form method="get"><input type="text" value="" name="q" id="q" /></form></center>
+<div style="width:50%;">
 <table>
 <% @player.each do |player| %>
   <tr class="livesearch">
     <td></td> 
-    <td><%= link_to "(#{player.rank})  #{player.first_name}  #{player.last_name}", edit_player_path(player) %></td>
+    <td><%= link_to "(#{player.rank})  #{player.first_name}  #{player.last_name}", edit_player_path(player), :id => "search" %></td>
   </tr>
-  </br>
 <% end %>
 </table>
+</div>
 
 <% javascript_tag do %>
 
