@@ -1,7 +1,7 @@
 <table>
 <% position.each do |player| %>
   <tr class="livesearch">
-    <td>(<%= player.rank %>)<%= player.first_name + " " + player.last_name %></td>
+    <td><%= player.rank %> <%= player.first_name + " " + player.last_name %></td>
     <% if params[:lock] %> 
     <td><%= link_to 'Edit', edit_player_path(player) %></td>
     <%end%>
