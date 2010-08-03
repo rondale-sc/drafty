@@ -1,6 +1,6 @@
 <% @teams.each do |team| %>
   <fieldset class="grid_5 column">
-    <legend><%= team.name + " / " + team.player_name%></legend>
+    <legend><span><%= team.name %></span>  <span style="color:#777777;font-size:10px;"><%= team.player_name %></span></legend>
     <ul>
     <% team.players.each do |player| %>
       <li><%= player.first_name + " " + player.last_name %></li>   
