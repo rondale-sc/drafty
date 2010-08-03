@@ -4,5 +4,4 @@ source 'http://rubygems.org'
  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
  gem 'mechanize'
  gem 'pg'
- gem "arel",          :git => "git://github.com/rails/arel.git"
  
