@@ -1,6 +1,6 @@
 Drafty::Application.routes.draw do
   resources :players, :only => [:index, :show, :edit]
-  resources :teamsx
+  resources :teams
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
