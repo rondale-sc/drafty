@@ -3,9 +3,8 @@
 <div style="width:50%;">
 <table>
 <% @player.each do |player| %>
-  <tr class="livesearch">
-    <td></td> 
-    <td><%= link_to "(#{player.rank})  #{player.first_name}  #{player.last_name}", edit_player_path(player), :id => "search" %></td>
+  <tr class="livesearch"> 
+    <td><%= link_to "(#{player.rank})  #{player.first_name}  #{player.last_name} #{player.position}", edit_player_path(player), :id => "search" %></td>
   </tr>
 <% end %>
 </table>
