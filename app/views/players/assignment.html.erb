@@ -4,7 +4,7 @@
 <table>
 <% @player.each do |player| %>
   <tr class="livesearch"> 
-    <td><%= link_to "(#{player.rank})  #{player.first_name}  #{player.last_name} #{player.position}", edit_player_path(player), :id => "search" %></td>
+    <td id="search"><%= link_to "(#{player.rank})  #{player.first_name}  #{player.last_name} #{player.position}", edit_player_path(player), :id => "search" %></td>
   </tr>
 <% end %>
 </table>
