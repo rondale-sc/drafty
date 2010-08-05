@@ -1,39 +1,36 @@
-<h1 style="font-size:96px;"><center>Teh Best&nbsp;&darr;</h1><br/><br/>
+<h1 style="font-size:96px;"><center>Teh Best&nbsp;&darr;</h1>
 <center><form method="get"><input type="text" value="" name="q" id="q" /></form></center>
 <div id="main">
- <fieldset class="grid_6 column"> 
+ <fieldset class="grid_5 column"> 
     <legend> QuarterBacks </legend>
     <%= render :partial => "position", :locals => {:position => @quarter_b} %>
   </fieldset>
  
-  <fieldset class="grid_6 column">
+  <fieldset class="grid_5 column">
     <legend> Running Backs </legend>
     <%= render :partial => "position", :locals => {:position => @running_b} %>
   </fieldset>
   
-  <fieldset class="grid_6 column">
+  <fieldset class="grid_5 column">
     <legend> Place Kickers </legend>
     <%= render :partial => "position", :locals => {:position => @place_k} %>
   </fieldset>
   
-  <fieldset class="grid_6 column">
+  <fieldset class="grid_5 column">
     <legend> Wide Receivers </legend>
     <%= render :partial => "position", :locals => {:position => @wide_r} %>
   </fieldset>
   
-  <fieldset class="grid_6 column">
+  <fieldset class="grid_5 column">
     <legend> Defense </legend>
     <%= render :partial => "position", :locals => {:position => @defense} %>
   </fieldset>
  
-  <fieldset class="grid_6 column">
+  <fieldset class="grid_5 column">
     <legend> Tight Ends </legends>
       <%= render :partial => "position", :locals => {:position => @tight_e} %>
     </fieldset>
   </div> 
-
-    <br />
-
 <% javascript_tag do %>
 
 Event.observe(window, 'load', function() { 

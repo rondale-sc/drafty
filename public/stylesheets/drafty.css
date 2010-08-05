@@ -13,14 +13,16 @@ body, html {
   background:#fff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 100%;
+  margin-right:auto;
+  margin-left:auto;
+  width:85%;
  }
 
  #main {
    padding-top:10px;
-   margin-right:auto;
-   margin-left:auto;
-   width:85%%;
+   width:100%%;
    font-size:24px;
+   padding-bottom:10px;
  }
  /*-----------------------------------------------------------------------------------------HTML ITEMS*/
 
