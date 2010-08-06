@@ -5,10 +5,12 @@
     <th><%=team.name %></th>
     <% team.players.each do |player| %>
       <tr>
-        <td style="font-size:12px;"><%= (player.first_name + " " + player.last_name + " " + player.position) %></td>
+        <td style="font-size:14px;color:#777777"><%= (player.first_name + " " + player.last_name + " " + player.position) %></td>
+        <td>
       </tr>
     <%end%>
-    <td style="color:#627aad;font-size:14;text-align:right;padding-top:0px;">(<%= 16 - team.players.length%> players left)</td>
+    <td style="color:#627aad;font-size:12px;text-align:right;padding-top:0px;text-decoration:none;">(<%= 16 - team.players.length%> players left)</td>
+    <hr/>
   <%end%>
 </table>
 </div>
