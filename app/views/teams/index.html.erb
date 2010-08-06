@@ -1,19 +1,25 @@
 <h1 style="font-size:96px;"><center>Teams<span style="font-size:12px;color:#777777;">yowza.</span></center></h1><br/><br/>
-<div class="grid_6">
-<% @teams.each do |team| %>
-  <table>
-    <th><%=team.name %></th>
-    <% team.players.each do |player| %>
-      <tr>
-        <td style="font-size:14px;color:#777777"><%= (player.first_name + " " + player.last_name + " " + player.position) %></td>
-        <td>
-      </tr>
+    <% increment = 0 %>
+
+    <% @teams.each do |team| %>
+
+      <table>
+        <th style="text-decoration:none;"><span style="text-decoration:underline;"><%=team.name %></span>&nbsp;<span style="font-size:12px;color:#777777;text-decoration:none;">(<%= team.player_name %>)</span>
+</span>
+                <% team.players.each do |player| %>
+
+          <tr><td style="font-size:14px;color:#777777;padding-top:0px;"><%= (player.first_name + " " + player.last_name + " " + player.position)%></td></tr>
+
+        <%end%>
+        <% total = increment + (16 - team.players.length) %>
+        <% total.times do |x| %>
+          <%=raw "<tr><td style=\"font-size:14px;color:#777777;padding-top:0px;\">#{ ((x + team.players.length) + 1).to_s.rjust(3)}.</td></tr>" %>
+        <%end%>
+
+        <tr><td style="color:#627aad;font-size:12px;text-align:right;padding-top:0px;text-decoration:none;">(<%= 16 - team.players.length %> players left)</td></tr>
+        <hr/>
+      </table>
     <%end%>
-    <td style="color:#627aad;font-size:12px;text-align:right;padding-top:0px;text-decoration:none;">(<%= 16 - team.players.length%> players left)</td>
-    <hr/>
-  <%end%>
-</table>
-</div>
 
 
 
