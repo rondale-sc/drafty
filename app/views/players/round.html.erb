@@ -1,8 +1,17 @@
 <center><h1>Round <%= current_round %></h1></center>
-<table>
+<table><tr>
+	<th>Pick Overall</th>
+	<th>Round</th>
+	<th>Team</th>
+	<th>Pick</th></tr>
 <% (1..224).each do |pick| %>
 	<% player = get_picked_player(pick) %>
-	
-	<tr><td style="font-size:14px;color:#777777;padding-top:0px;"><%= pick %>. <%= Team.with_pick(pick).first.player_name %> - <%= player.try(:name)  %> </td></tr>
+	<% round = (pick / Team.count) + (pick % Team.count == 0 ? 0 : 1) %>
+	<tr>
+		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= pick %></td> 
+		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= round %></td>
+		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= Team.with_pick(pick).player_name %></td> 
+		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= player.try(:name)  %></td>
+	</tr>
 <% end %>
 </table>
