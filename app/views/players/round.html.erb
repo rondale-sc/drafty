@@ -11,7 +11,11 @@
 		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= pick %></td> 
 		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= round %></td>
 		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= Team.with_pick(pick).player_name %></td> 
-		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= player.try(:name)  %></td>
+		<% if player %>
+			<td style="font-size:14px;color:#777777;padding-top:0px;"><%= ((session[:admin]) ? (link_to player.try(:name).to_s, edit_player_path(player), {:style => "font-size:14px;"}) :  player.try(:name).to_s) %></td>
+		<% else %>
+			<td style="font-size:14px;color:#777777;padding-top:0px;">&nbsp;</td>
+		<% end %>
 	</tr>
 <% end %>
 </table>
