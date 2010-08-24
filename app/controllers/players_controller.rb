@@ -77,7 +77,7 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
 
     if params[:player] && params[:player][:selected] && params[:player][:pick]
-      @player.team = Team.with_pick(params[:player][:pick]).first
+      @player.team = Team.with_pick(params[:player][:pick].to_i)
     end
     
     respond_to do |format|
