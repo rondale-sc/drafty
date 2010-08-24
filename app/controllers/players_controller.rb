@@ -76,6 +76,10 @@ class PlayersController < ApplicationController
   def update
     @player = Player.find(params[:id])
 
+    if params[:player] && params[:player][:selected] && params[:player][:pick]
+      @player.team = Team.with_pick(@player.pick).first
+    end
+    
     respond_to do |format|
       if @player.update_attributes(params[:player])
         format.html { redirect_to(:action => 'assignment') }
@@ -98,14 +102,21 @@ class PlayersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def round
+   @players = Player.round_number.picked.order("pick")
+  end
 
   def assignment
     @player = Player.available.order("rank")
     @teams = Team.order("name")
   end
+  
  def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      username == "admin" && password == "ransom"
+      if username == "admin" && password == "ransom"
+        session[:admin] = true
+      end
     end
  end
 end

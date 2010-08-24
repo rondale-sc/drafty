@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+	<%= f.label :pick %><br />
+	<%= f.select(:pick, (1..224).each {|x| x }, {:selected => current_pick } )%>
+  </div>
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
@@ -19,11 +22,7 @@
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
   </div>
-  <div class="field">
-    <%= f.label :team_id %>
-    <%= f.select(:team_id, Team.find(:all).collect {|c| [ c.player_name, c.id ]}, {:include_blank => true} ) %>
-  </div>
-    </select>
+  <%= f.hidden_field :selected, {:value => true}  %>
   </div>
   <div class="actions">
     <%= f.submit %>
