@@ -60,7 +60,7 @@ task :get_ranking, :needs => :environment  do |t, args|
       pl.last_name =  player[:name].split(',')[0].split[1].strip.gsub(' ', '')   #last name
 
       s = player[:name].split(',')[1].strip.gsub(' ', '') 
-        pl.team =     s.slice(0..2).strip.gsub(' ', '')     # TEAM
+        # =     s.slice(0..2).strip.gsub(' ', '')     # TEAM
         pl.position = s.slice(3..5).strip.gsub(' ', '')     # Position    
         pl.selected = false
 
