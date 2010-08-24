@@ -7,5 +7,7 @@ class Team < ActiveRecord::Base
     where("draft_order = ?", draft_order) 
   } 
   
+  scope :by_draft_order, order('draft_order')
+  
 end
 

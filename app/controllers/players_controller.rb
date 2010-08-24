@@ -77,7 +77,7 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
 
     if params[:player] && params[:player][:selected] && params[:player][:pick]
-      @player.team = Team.with_pick(@player.pick).first
+      @player.team = Team.with_pick(params[:player][:pick]).first
     end
     
     respond_to do |format|
@@ -104,7 +104,7 @@ class PlayersController < ApplicationController
   end
   
   def round
-   @players = Player.round_number.picked.order("pick")
+   @players = Player.picked.order("pick")
   end
 
   def assignment
