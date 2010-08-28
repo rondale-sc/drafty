@@ -7,7 +7,7 @@ task :populate_franchise, :needs => :environment  do |t, args|
       :picks => [8, 21, 36]
       },
     "Swain Strickland" => {
-      :player_rank => [46, 3, 20 ],
+      :player_rank => [45, 3, 20 ],
       :picks => [7, 22, 35]
     },
     "Jonathan Jackson" => {
