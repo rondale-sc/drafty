@@ -63,7 +63,6 @@ task :get_ranking, :needs => :environment  do |t, args|
         # =     s.slice(0..2).strip.gsub(' ', '')     # TEAM
         pl.position = s.slice(3..5).strip.gsub(' ', '')     # Position    
         pl.selected = false
-
       pl.save!
      end
 
