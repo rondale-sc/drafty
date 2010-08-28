@@ -2,17 +2,14 @@ require 'rubygems'
 require 'mechanize'
 require 'pp'
 
-desc 'Grabs all the rank information from espn'
-task :get_ranking, :needs => :environment  do |t, args| 
+desc 'Grabs all the information for defenses because they are ranked outside of get_rankings'
+task :get_defense, :needs => :environment  do |t, args| 
   begin
     @agent = Mechanize.new
     @page_count = 0 #variable to deal with pagination
     @players = [] 
-    page_increment = 0  
-    
-    while @page_count < 26 do 
 
-      page = @agent.get("http://games.espn.go.com/ffl/tools/projections?startIndex=#{page_increment.to_s}")
+      page = @agent.get("http://games.espn.go.com/ffl/tools/projections?startIndex&slotCategoryId=16")
       cell_counter = 0 
       player = {}
 
@@ -47,25 +44,29 @@ task :get_ranking, :needs => :environment  do |t, args|
           cell_counter = 0
         end
       end
-        @page_count += 1
-        page_increment += 40
-        @players
-    end
-    
+      
+   get_ranking_defenses = Player.available.by_position("D/S").order("rank")
+   @existing_defense = []
+   @player_count = Player.count
+   
+   get_ranking_defenses.each do |existing_player|   
+     @existing_defense << existing_player.first_name 
+   end
+   
      @players.each do |player|
-        pl = Player.new
+        next if @existing_defense.include?(player[:name].split(',')[0].split[0].strip.gsub(' ', '')) #first_name = "Bears" "Packers" etc
 
-      pl.rank = player[:rank].to_i
-      pl.first_name = player[:name].split(',')[0].split[0].strip.gsub(' ', '')  #first name
-      pl.last_name =  player[:name].split(',')[0].split[1].strip.gsub(' ', '')   #last name
-
-      s = player[:name].split(',')[1].strip.gsub(' ', '') 
-        pl.position = s.slice(3..5).strip.gsub(' ', '')     # Position    
-        pl.selected = false
-      pl.save!
+       pl = Player.new
+       
+       pl.rank = player[:rank].to_i + @player_count
+       pl.first_name = player[:name].split(',')[0].split[0].strip.gsub(' ', '')  #first name
+       pl.last_name =  player[:name].split(',')[0].split[1].strip.gsub(' ', '')   #last name
+       
+        s = player[:name].split(',')[1].strip.gsub(' ', '') 
+            pl.position = "D/S"     # Position    
+            pl.selected = false
+         pl.save
      end
-
-
   rescue StandardError => e
     puts e.backtrace
   end
