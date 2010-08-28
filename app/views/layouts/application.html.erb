@@ -4,12 +4,12 @@
 <head>
   <title>Drafty</title>
   <%= javascript_include_tag :defaults %>
-
   <%= stylesheet_link_tag 'drafty' %>
   <%= javascript_include_tag "quicksilver" %>
   <%= javascript_include_tag "livesearch" %>
   <%= csrf_meta_tag %>
   <%= yield :refresh_tag %> 
+  <link rel="shortcut icon" href="images/favicon.ico" />
 </head>
 <body>
   <div id="nav">
