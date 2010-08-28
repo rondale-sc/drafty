@@ -3,37 +3,36 @@ task :populate_franchise, :needs => :environment  do |t, args|
   begin
   @players = {
     "Stephen Jackson" => { 
-      :player_rank  => [21, 4, 7],
-      :picks => [8, 21, 36]
+      :picks => [8, 21, 36],
+      :player_names => ["Peyton Manning", "Ray Rice", "Andre Johnson"]
       },
     "Swain Strickland" => {
-      :player_rank => [45, 3, 20 ],
-      :picks => [7, 22, 35]
+      :picks => [7, 22, 35],
+      :player_names => ["Tony Romo", "Maurice Jones-Drew", "Roddy White"]
     },
     "Jonathan Jackson" => {
-      :player_rank => [2]
+      :player_names => ["Adrian Peterson"]
     },
     "Robert Couch" => {
-      :player_rank => [1]
+      :player_names => ["Chris Johnson"]
     },
     "David Jackson" => {
-      :player_rank => [12]
+      :player_names => ["Larry Fitzgerald"]
     },
     "Laura Jackson" => {
-      :player_rank => [5]
+      :player_names => ["Steven Jackson"]
     },
     "Michelle Jackson" => {
-      :player_rank => [67]
+      :player_names => ["Brett Favre"]
     }
   }
   
   @players.each do |key, value|
-    value[:player_rank].each_with_index do |rank, i|
-        @team = Team.find_by_player_name(key)
-
-        player = Player.find_by_rank(rank)
-        player.pick = (value[:picks].blank? ? @team.draft_order : value[:picks][i])
-        player.team_id = @team.id
+    value[:player_names].each_with_index do |name, i|
+      @team = Team.find_by_player_name(key)
+        player =  Player.full_name(name).first
+          player.pick = (value[:picks].blank? ? @team.draft_order : value[:picks][i])
+          player.team_id = @team.id
         player.save
     end
   end

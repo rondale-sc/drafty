@@ -9,7 +9,10 @@
 <% end %>
 </table>
 </div>
+<% content_for :refresh_tag do %>
+<meta http-equiv="refresh" content="30"/>
 
+<% end %>
 <% javascript_tag do %>
 
 Event.observe(window, 'load', function() { 
