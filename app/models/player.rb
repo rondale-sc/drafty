@@ -9,6 +9,8 @@ class Player < ActiveRecord::Base
   
   scope :full_name, lambda {|name| where("first_name = ? AND last_name = ?", name.split[0], name.split[1])}
   
+  scope :by_position, lambda {|position| where("position LIKE ?", "%#{position}") }
+  
   def name
     first_name + ' ' + last_name
   end

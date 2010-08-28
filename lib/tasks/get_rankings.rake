@@ -10,7 +10,7 @@ task :get_ranking, :needs => :environment  do |t, args|
     @players = [] 
     page_increment = 0  
     
-    while @page_count < 13 do 
+    while @page_count < 39 do 
 
       page = @agent.get("http://games.espn.go.com/ffl/tools/projections?startIndex=#{page_increment.to_s}")
       cell_counter = 0 

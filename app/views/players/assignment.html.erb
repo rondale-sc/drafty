@@ -2,6 +2,7 @@
 <center><form method="get"><input type="text" value="" name="q" id="q" /></form></center>
 <div style="width:50%;">
 <table>
+<th><%= render("position_restriction") %></th>
 <% @player.each do |player| %>
   <tr class="livesearch"> 
     <td id="search"><span class="position">(<%=player.rank%>)&nbsp;</span><%= ((session[:admin]) ? (link_to "#{player.first_name}  #{player.last_name} #{player.position}", edit_player_path(player), :id => "search") :  "#{player.first_name}  #{player.last_name} #{player.position}") %></td>

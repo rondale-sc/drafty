@@ -5,8 +5,9 @@
 	<th>Team</th>
 	<th>Pick</th></tr>
 <% (1..224).each do |pick| %>
+     <% team_count = Team.count %>
 	<% player = get_picked_player(pick) %>
-	<% round = (pick / Team.count) + (pick % Team.count == 0 ? 0 : 1) %>
+	<% round = (pick / team_count ) + (pick % team_count == 0 ? 0 : 1) %>
 	<tr>
 		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= pick %></td> 
 		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= round %></td>
