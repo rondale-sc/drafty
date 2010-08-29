@@ -5,7 +5,11 @@
 <th><%= render("position_restriction") %></th>
 <% @player.each do |player| %>
   <tr class="livesearch"> 
-    <td id="search"><span class="position">(<%=player.rank%>)&nbsp;</span><%= ((session[:admin]) ? (link_to "#{player.first_name}  #{player.last_name} #{player.position}", edit_player_path(player), :id => "search") :  "#{player.first_name}  #{player.last_name} #{player.position}") %></td>
+    <td id="search">
+      <span class="position">(<%= player.rank -%>)&nbsp;</span>
+      <%= link_to "#{player.first_name}  #{player.last_name} #{player.position}", player.url, :id => 'search' -%>
+      <%= link_to "edit", edit_player_path(player) if session[:admin] %>
+    </td>
   </tr>
 <% end %>
 </table>
