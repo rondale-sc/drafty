@@ -9,19 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100824141722) do
+ActiveRecord::Schema.define(:version => 20100829030434) do
 
   create_table "players", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "position"
     t.string   "team"
-    t.integer  "rank",       :limit => 255
+    t.integer  "rank",         :limit => 255
     t.boolean  "selected"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "team_id"
     t.integer  "pick"
+    t.string   "nfl_team"
+    t.float    "average_pick"
+    t.integer  "minimum_pick"
+    t.integer  "maximum_pick"
+    t.string   "url"
+    t.integer  "bye_week"
   end
 
   create_table "teams", :force => true do |t|
