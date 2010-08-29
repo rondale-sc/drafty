@@ -19,9 +19,10 @@ module ApplicationHelper
     (min_pick..max_pick).each do |p|  
       if Player.for_pick(p).empty?
         @current_pick = p
-        return @current_pick
+        return @current_pick 
       end
     end    
+    return 1
   end
   
   def current_round
