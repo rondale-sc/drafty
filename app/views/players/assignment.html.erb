@@ -7,7 +7,7 @@
   <tr class="livesearch"> 
     <td id="search">
       <span class="position">(<%= player.rank -%>)&nbsp;</span>
-      <%= link_to "#{player.first_name}  #{player.last_name} #{player.position}", player.url, :id => 'search' -%>
+      <%= link_to "#{player.first_name}  #{player.last_name} #{player.nfl_team}(#{player.bye_week}) #{player.position}", player.url, :id => 'search' -%>
       <%= link_to "edit", edit_player_path(player) if session[:admin] %>
     </td>
   </tr>
