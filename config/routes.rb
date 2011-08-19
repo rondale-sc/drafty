@@ -1,4 +1,6 @@
 Drafty::Application.routes.draw do
+  resources :drafts
+
   resources :players
   resources :teams
   # The priority is based upon order of creation:

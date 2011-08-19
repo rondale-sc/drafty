@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  team_id: 1
+  player_id: 1
+  draft_time: 2011-08-19 14:14:31
+
+two:
+  team_id: 1
+  player_id: 1
+  draft_time: 2011-08-19 14:14:31

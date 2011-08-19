@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Team:</b>
+  <%= @draft.team_id %>
+</p>
+
+<p>
+  <b>Player:</b>
+  <%= @draft.player_id %>
+</p>
+
+<p>
+  <b>Draft time:</b>
+  <%= @draft.draft_time %>
+</p>
+
+
+<%= link_to 'Edit', edit_draft_path(@draft) %> |
+<%= link_to 'Back', drafts_path %>

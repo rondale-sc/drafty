@@ -1,0 +1,29 @@
+<%= form_for(@draft) do |f| %>
+  <% if @draft.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@draft.errors.count, "error") %> prohibited this draft from being saved:</h2>
+
+      <ul>
+      <% @draft.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :team_id %><br />
+    <%= f.text_field :team_id %>
+  </div>
+  <div class="field">
+    <%= f.label :player_id %><br />
+    <%= f.text_field :player_id %>
+  </div>
+  <div class="field">
+    <%= f.label :draft_time %><br />
+    <%= f.datetime_select :draft_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

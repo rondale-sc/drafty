@@ -3,7 +3,7 @@ require 'mechanize'
 require 'pp'
 
 desc 'Grabs all the rank information from the My Fantasy League ADP Site.'
-task :load_adp_rankings, :needs => :environment  do |t, args| 
+task :load_adp_rankings, :needs => :environment  do |t, args|
   @agent = Mechanize.new
   @players = []
 
@@ -42,7 +42,7 @@ task :load_adp_rankings, :needs => :environment  do |t, args|
     'SDC' => 10
   }
 
-  page = @agent.get('http://football.myfantasyleague.com/2010/adp?COUNT=500&POS=*&CUTOFF=5&FRANCHISES=-1&IS_PPR=-1&IS_KEEPER=0&IS_MOCK=-1&TIME=')
+  page = @agent.get("http://football.myfantasyleague.com/#{Time.now.year}/adp?COUNT=500&POS=*&CUTOFF=5&FRANCHISES=-1&IS_PPR=-1&IS_KEEPER=0&IS_MOCK=-1&TIME=")
 
   rows = page.search('table.report tr')
 
@@ -68,9 +68,9 @@ task :load_adp_rankings, :needs => :environment  do |t, args|
                 :drafts_selected_in
               end
 
-      player[field] = value.text 
+      player[field] = value.text
       if field == :player
-        player[:url]  = 'http://football.myfantasyleague.com/2010/' + value.children[0].attributes['href'].value
+        player[:url]  = "http://football.myfantasyleague.com/#{Time.now.year}/" + value.children[0].attributes['href'].value
       end
     end
 
@@ -84,7 +84,7 @@ task :load_adp_rankings, :needs => :environment  do |t, args|
 
     @players << player
   end
-  
+
   @players.each do |player|
     attributes = player.reject{|k,v| [:player, :drafts_selected_in].include? k }
     Player.create(attributes)
