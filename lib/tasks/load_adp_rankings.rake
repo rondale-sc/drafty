@@ -1,8 +1,3 @@
-require 'rubygems'
-require 'nokogiri'
-require 'open-uri'
-require 'pp'
-
 desc 'Grabs all the player information from the My Fantasy League Site.'
 task :update_players => :environment do
   Player.populate
