@@ -1,8 +1,8 @@
 desc 'Prepopulates all the franchise players based on their ranking.'
-task :populate_franchise, :needs => :environment  do |t, args| 
+task :populate_franchise => :environment  do
   begin
   @players = {
-    "Stephen Jackson" => { 
+    "Stephen Jackson" => {
       :picks => [8, 21, 36],
       :player_names => ["Peyton Manning", "Ray Rice", "Andre Johnson"]
       },
@@ -26,7 +26,7 @@ task :populate_franchise, :needs => :environment  do |t, args|
       :player_names => ["Brett Favre"]
     }
   }
-  
+
   @players.each do |key, value|
     value[:player_names].each_with_index do |name, i|
       @team = Team.find_by_player_name(key)
