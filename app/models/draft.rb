@@ -3,7 +3,7 @@ class Draft < ActiveRecord::Base
   belongs_to :player
 
   def self.current_pick
-    where("player_id is NULL").first
+    where("player_id is NULL").limit(1).first
   end
 
   def self.current_round
