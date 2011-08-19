@@ -32,6 +32,8 @@ class Player < ActiveRecord::Base
         :minimum_pick => mfl_player.attributes['minPick'].value,
         :maximum_pick => mfl_player.attributes['maxPick'].value
       )
+
+      player.save!
     end
   end
 
