@@ -1,29 +1,31 @@
 module ApplicationHelper
- 
- #TODO 
+
+ #TODO
   def get_picked_player(pick)
     @players ||= Player.picked
-    
+
     @players.select{|p| p.pick == pick}.first
   end
-  
+
   def current_pick
     return @current_pick unless @current_pick.nil?
 
     round = current_round
     min_pick = current_round * Team.count - (Team.count - 1)
     max_pick = current_round * Team.count
-    
+
     Rails.logger.debug min_pick.to_s + '-' + max_pick.to_s
-    
-    (min_pick..max_pick).each do |p|  
+
+    (min_pick..max_pick).each do |p|
       if Player.for_pick(p).empty?
         @current_pick = p
+
         return @current_pick
       end
-    end    
+    end
+    return 1
   end
-  
+
   def current_round
     return @current_round unless @current_round.nil?
 

@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
+# This file is auto-generated from the current state of the database. Instead of editing this file,
 # please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
 #
@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20100829030434) do
     t.string   "last_name"
     t.string   "position"
     t.string   "team"
-    t.integer  "rank",         :limit => 255
+    t.integer  "rank"
     t.boolean  "selected"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(:version => 20100829030434) do
   end
 
   create_table "teams", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "player_name"
-    t.integer  "draft_order"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "player_name"
+    t.integer   "draft_order"
   end
 
 end
