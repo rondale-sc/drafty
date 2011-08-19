@@ -6,7 +6,7 @@ class Team < ActiveRecord::Base
     @draft_order ||= by_draft_order.all
     @reversed_draft_order ||= by_reversed_draft_order.all
     
-    round = (pick_number / team_count) + (pick_number % team_count == 0 ? 0 : 1)
+    round = Draft.current_round
 
     draft_order = pick_number % team_count
     draft_order = team_count if draft_order == 0
