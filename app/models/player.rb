@@ -58,4 +58,8 @@ class Player < ActiveRecord::Base
       end
     end
   end
+
+  def url
+    "http://football.myfantasyleague.com/#{Time.now.year}/player?P=#{self.mfl_player_id}"
+  end
 end
