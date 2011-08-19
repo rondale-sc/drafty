@@ -1,4 +1,7 @@
-class Draft < ActiveRecord::Base  
+class Draft < ActiveRecord::Base
+  belongs_to :team
+  belongs_to :player
+
   def self.current_pick
     where("player_id is NULL").first
   end
