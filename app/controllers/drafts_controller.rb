@@ -46,7 +46,7 @@ class DraftsController < ApplicationController
 
     respond_to do |format|
       if @draft.save
-        format.html { redirect_to(@draft, :notice => 'Draft was successfully created.') }
+        format.html { redirect_to(drafts_url, :notice => 'Draft was successfully created.') }
         format.xml  { render :xml => @draft, :status => :created, :location => @draft }
       else
         format.html { render :action => "new" }
@@ -62,7 +62,7 @@ class DraftsController < ApplicationController
 
     respond_to do |format|
       if @draft.update_attributes(params[:draft])
-        format.html { redirect_to(@draft, :notice => 'Draft was successfully updated.') }
+        format.html { redirect_to(drafts_url, :notice => 'Draft was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

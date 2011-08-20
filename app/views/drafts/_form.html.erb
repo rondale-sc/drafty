@@ -1,3 +1,4 @@
+      Livesearch: <form method="get"><input type="text" value="" name="q" id="q" /></form>
 <%= form_for(@draft) do |f| %>
   <% if @draft.errors.any? %>
     <div id="error_explanation">
@@ -10,20 +11,35 @@
       </ul>
     </div>
   <% end %>
+  Owner:  <%= @draft.team.player_name %><br />
+  Round:  <%= @draft.round %><br />
+  Pick:   <%= @draft.overall_pick %><br />
 
   <div class="field">
-    <%= f.label :team_id %><br />
-    <%= f.text_field :team_id %>
+    <br />
+    <h4>Player:</h4>
+    <table>
+    <% Player.by_ranking.each_with_index do |player, index| %>
+      <tr class="livesearch">
+        <td id="search">
+          <span class="position">(<%= index + 1 -%>)&nbsp;</span>
+          <label><%= check_box_tag 'draft[player_id]', player.id, (@draft.player_id == player.id) %><%= "#{player.name} #{player.nfl_team}(#{player.bye_week}) #{player.position}" -%>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+
   </div>
-  <div class="field">
-    <%= f.label :player_id %><br />
-    <%= f.text_field :player_id %>
-  </div>
-  <div class="field">
-    <%= f.label :draft_time %><br />
-    <%= f.datetime_select :draft_time %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+
+<% javascript_tag do %>
+
+Event.observe(window, 'load', function() {
+  new QuicksilverLiveSearch('q', '.livesearch');
+});
+
 <% end %>

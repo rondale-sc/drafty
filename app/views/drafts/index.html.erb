@@ -1,23 +1,26 @@
 <h1>Listing drafts</h1>
+<%= button_to 'Start Clock', start_draft_clock_path, :method => :post %>
+<%= button_to 'Stop Clock', stop_draft_clock_path, :method => :post %>
+<br/>
 
 <table>
   <tr>
+    <th>Round</th>
+    <th>Pick</th>
     <th>Team</th>
     <th>Player</th>
     <th>Draft time</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
 <% @drafts.each do |draft| %>
   <tr>
-    <td><%= draft.team_id %></td>
-    <td><%= draft.player_id %></td>
-    <td><%= draft.draft_time %></td>
-    <td><%= link_to 'Show', draft %></td>
+    <td><%= draft.round %></td>
+    <td><%= draft.overall_pick %></td>
+    <td><%= draft.team.player_name %></td>
+    <td><%= draft.player.name if draft.player.present? %></td>
+    <td><%= draft.draft_time.localtime.strftime('%H:%M') if draft.draft_time %></td>
     <td><%= link_to 'Edit', edit_draft_path(draft) %></td>
-    <td><%= link_to 'Destroy', draft, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
