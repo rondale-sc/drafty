@@ -1,4 +1,6 @@
 class DraftsController < ApplicationController
+  before_filter :require_admin
+
   # GET /drafts
   # GET /drafts.xml
   def index

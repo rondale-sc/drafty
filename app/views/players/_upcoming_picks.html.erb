@@ -1,0 +1,16 @@
+<table class="grid_6 center">
+  <tr>
+    <th>Round</th>
+    <th>Overall Pick</th>
+    <th>Pick Time</th>
+    <th>Team Owner</th>
+  </tr>
+<% Draft.pending.draft_order.limit(5).each do |draft| %>
+  <tr <%= "bgcolor='lightgreen'" if draft.draft_time && draft.draft_time < Time.now -%>>
+    <td><%= draft.round -%></td>
+    <td><%= draft.overall_pick -%></td>
+    <td><%= draft.draft_time.localtime.strftime('%H:%M') if draft.draft_time -%></td>
+    <td><%= draft.team.player_name -%></td>
+  </tr>
+<% end %>
+</table>
