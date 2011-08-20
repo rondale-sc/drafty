@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110820022651) do
+ActiveRecord::Schema.define(:version => 20110820042318) do
 
   create_table "drafts", :force => true do |t|
     t.integer  "team_id"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20110820022651) do
   create_table "players", :force => true do |t|
     t.string   "position"
     t.string   "nfl_team"
-    t.integer  "rank",          :limit => 255
     t.boolean  "selected"
     t.datetime "created_at"
     t.datetime "updated_at"
