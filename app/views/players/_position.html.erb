@@ -1,11 +1,10 @@
-<table id = "avialable_player">
-<% position.each do |player| %>
+<table id = "available_player">
+<% position.each_with_index do |player, index| %>
   <tr class="livesearch">
-    <td style="font-size:22px;padding-top:2px;text-align:left;"><%=raw player.rank.to_s.rjust(3).gsub(" ", "&nbsp;") %>&nbsp;&nbsp;&nbsp;<%= player.first_name + " " + player.last_name %></td>
-    <% if params[:lock] %> 
-    <td><%= link_to 'Edit', edit_player_path(player) %></td>
+    <td style="font-size:22px;padding-top:2px;text-align:left;"><%=raw (index + 1).to_s.rjust(3).gsub(" ", "&nbsp;") %>&nbsp;&nbsp;&nbsp;<%= player.name %></td>
+    <% if params[:lock] %>
+      <td><%= link_to 'Edit', edit_player_path(player) %></td>
     <%end%>
   </tr>
 <% end %>
- 
 </table>
