@@ -2,6 +2,8 @@ class Team < ActiveRecord::Base
   has_many :drafts
   has_many :players, :through => :drafts
 
+  scope :draft_order, order(:draft_order)
+
   def self.with_pick(pick_number)
     team_count = Team.count
     @draft_order ||= by_draft_order.all
@@ -14,7 +16,7 @@ class Team < ActiveRecord::Base
     draft_order -= 1
 
     rel = if round % 2 == 0
-      # EVEN  
+      # EVEN
       @reversed_draft_order
     else
       # ODD
