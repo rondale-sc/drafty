@@ -82,4 +82,14 @@ class DraftsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def start_draft_clock
+    Draft.start_draft_clock
+    redirect_to(drafts_url)
+  end
+
+  def stop_draft_clock
+    Draft.stop_draft_clock
+    redirect_to(drafts_url)
+  end
 end
