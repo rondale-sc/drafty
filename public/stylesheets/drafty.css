@@ -154,3 +154,5 @@ color: #fff;
 background-color: #369;
 }
 
+#upcoming_picks th {font-size:16px;font-weight:500}
+#upcoming_picks td {padding:2px;}
