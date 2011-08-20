@@ -5,7 +5,10 @@ class Player < ActiveRecord::Base
   scope :picked, includes(:draft).where("drafts.id IS NOT NULL")
   scope :available, includes(:draft).where("drafts.id IS NULL")
 
-  scope :for_position, lambda{|position| where('players.position = ?', position)}
+  scope :for_position, lambda{ |position| 
+      return self.scoped if position.blank?
+      where('players.position = ?', position)
+    }
   scope :quaterbacks,     for_position('QB')
   scope :running_backs,   for_position('RB')
   scope :wide_receivers,  for_position('WR')
