@@ -5,7 +5,7 @@
 <table>
 <th><%= render("position_restriction") %></th>
 <% @players.each_with_index do |player, index| %>
-  <tr class="livesearch">
+  <tr class="livesearch <%= cycle("even", "odd")%>">
     <td id="search">
       <span class="position">(<%= index + 1 -%>)&nbsp;</span>
       <%= link_to "#{player.name} #{player.nfl_team}(#{player.bye_week}) #{player.position}", player.url, :id => 'search' -%>

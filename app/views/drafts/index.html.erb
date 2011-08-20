@@ -14,7 +14,7 @@
   </tr>
 
 <% @drafts.each do |draft| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd")%>">
     <td><%= draft.round %></td>
     <td><%= draft.overall_pick %></td>
     <td><%= draft.team.player_name %></td>

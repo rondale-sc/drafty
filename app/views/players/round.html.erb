@@ -1,12 +1,15 @@
 <%= render :partial => 'upcoming_picks' %>
-<table><tr>
-  <th>Pick Overall</th>
-  <th>Round</th>
-  <th>Team</th>
-  <th>Pick</th></tr>
+<br/>
+<table class="grid_10" style="margin:auto;">
+  <tr>
+    <th>Pick Overall</th>
+    <th>Round</th>
+    <th>Team</th>
+    <th>Pick</th>
+  </tr>
 <% Draft.draft_order.all.each do |draft| %>
   <% team_count = Team.all.count %>
-  <tr>
+  <tr class="<%= cycle("even", "odd") %>">
     <td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.overall_pick %></td>
     <td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.round %></td>
     <td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.team.player_name %></td>
@@ -21,7 +24,6 @@
   </tr>
 <% end %>
 </table>
-
 <% content_for :refresh_tag do %>
 <meta http-equiv="refresh" content="10"/>
 <% end %>

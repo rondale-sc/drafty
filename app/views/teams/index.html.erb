@@ -8,7 +8,7 @@
   </span>
   <% team.drafts.order("round").each do |draft| %>
 
-  <tr><td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.round%>. <%= draft.player.name + " " + draft.player.position if draft.player.present? %></td></tr>
+  <tr class="<%= cycle("even","odd")%>"><td style="font-size:20px;color:#777777;padding-top:10px;"><%= draft.round%>. <%= draft.player.name + " " + draft.player.position if draft.player.present? %></td></tr>
 
   <%end%>
 
