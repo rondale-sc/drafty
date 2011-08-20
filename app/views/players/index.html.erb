@@ -1,6 +1,5 @@
 <h1 style="font-size:72px;"><center>Teh Best&nbsp;&darr;</center></h1>
 <%= render :partial => 'upcoming_picks' %>
-<center><form method="get"><input type="text" value="" name="q" id="q" /></form></center>
 <div id="main">
  <fieldset class="grid_4 column">
     <legend> QuarterBacks </legend>
@@ -33,14 +32,11 @@
     </fieldset>
   </div>
 
+<script type="text/javascript" charset="utf-8">
+  //setTimeout('window.location = "/"', 3000)
+</script>
+
 <% content_for :refresh_tag do %>
-<meta http-equiv="refresh" content="3"/>
+  <meta http-equiv="refresh" content="3"/>
 <% end %>
 
-<% javascript_tag do %>
-
-Event.observe(window, 'load', function() {
-  new QuicksilverLiveSearch('q', '.livesearch');
-});
-
-<% end %>
