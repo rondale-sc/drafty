@@ -1,10 +1,10 @@
-<center><h1>Round <%= Draft.current_round %> - Pick <%= Draft.current_pick.overall_pick.to_s %>(<%= Draft.current_team.player_name %>)</h1></center>
+<%= render :partial => 'upcoming_picks' %>
 <table><tr>
   <th>Pick Overall</th>
   <th>Round</th>
   <th>Team</th>
   <th>Pick</th></tr>
-<% Draft.all.each do |draft| %>
+<% Draft.draft_order.all.each do |draft| %>
   <% team_count = Team.all.count %>
   <tr>
     <td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.overall_pick %></td>

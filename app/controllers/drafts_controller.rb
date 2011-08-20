@@ -4,7 +4,7 @@ class DraftsController < ApplicationController
   # GET /drafts
   # GET /drafts.xml
   def index
-    @drafts = Draft.all
+    @drafts = Draft.draft_order.all
 
     respond_to do |format|
       format.html # index.html.erb
