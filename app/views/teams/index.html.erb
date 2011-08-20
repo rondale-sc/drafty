@@ -4,29 +4,25 @@
 <% @teams.each do |team| %>
 
 <table>
-	<th style="text-decoration:none;"><span style="text-decoration:underline;"><%=team.name %></span>&nbsp;<span style="font-size:12px;color:#777777;text-decoration:none;">(<%= team.player_name %>)</span>
-	</span>
-	<% team.players.each do |player| %>
+  <th style="text-decoration:none;"><span style="text-decoration:underline;"><%=team.name %></span>&nbsp;<span style="font-size:12px;color:#777777;text-decoration:none;">(<%= team.player_name %>)</span>
+  </span>
+  <% team.drafts.each do |draft| %>
 
-	<tr><td style="font-size:14px;color:#777777;padding-top:0px;"><%= (player.first_name + " " + player.last_name + " " + player.position)%></td></tr>
+  <tr><td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.round%>. <%= draft.player.name + " " + draft.player.position if draft.player.present? %></td></tr>
 
-	<%end%>
-	<% total = increment + (16 - team.players.length) %>
-	<% total.times do |x| %>
-	<%=raw "<tr><td style=\"font-size:14px;color:#777777;padding-top:0px;\">#{ ((x + team.players.length) + 1).to_s.rjust(3)}.</td></tr>" %>
-	<%end%>
+  <%end%>
 
-	<tr><td style="color:#627aad;font-size:12px;text-align:right;padding-top:0px;text-decoration:none;">(<%= 16 - team.players.length %> players left)</td></tr>
-	<hr/>
+  <tr><td style="color:#627aad;font-size:12px;text-align:right;padding-top:0px;text-decoration:none;">(<%= team.drafts.pending.count %> players left)</td></tr>
+  <hr/>
 </table>
 <%end%>
 
 <% content_for :refresh_tag do %>
-<meta http-equiv="refresh" content="10"/>
+  <meta http-equiv="refresh" content="10"/>
 <% end %>
 
 
 <br />
 <% if params[:lock] %>
-<%= link_to 'New Team', new_team_path %>
+  <%= link_to 'New Team', new_team_path %>
 <% end %>

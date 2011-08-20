@@ -96,11 +96,11 @@ class PlayersController < ApplicationController
   end
 
   def round
-   @players = Player.picked.order("pick")
+    @drafts = Draft.finalized.draft_order
   end
 
   def assignment
-    @player = Player.available.by_position(params[:position]).order("rank")
+    @players = Player.available.for_position(params[:position]).by_ranking
     @teams = Team.order("name")
   end
 

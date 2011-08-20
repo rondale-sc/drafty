@@ -1,26 +1,24 @@
-<center><h1>Round <%= current_round %> - Pick <%= current_pick.to_s %>(<%= current_team.player_name %>)</h1></center>
+<center><h1>Round <%= Draft.current_round %> - Pick <%= Draft.current_pick.overall_pick.to_s %>(<%= Draft.current_team.player_name %>)</h1></center>
 <table><tr>
-	<th>Pick Overall</th>
-	<th>Round</th>
-	<th>Team</th>
-	<th>Pick</th></tr>
-<% (1..224).each do |pick| %>
-     <% team_count = Team.count %>
-	<% player = get_picked_player(pick) %>
-	<% round = (pick / team_count ) + (pick % team_count == 0 ? 0 : 1) %>
-	<tr>
-		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= pick %></td> 
-		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= round %></td>
-		<td style="font-size:14px;color:#777777;padding-top:0px;"><%= Team.with_pick(pick).player_name %></td> 
-		<% if player %>
+  <th>Pick Overall</th>
+  <th>Round</th>
+  <th>Team</th>
+  <th>Pick</th></tr>
+<% Draft.all.each do |draft| %>
+  <% team_count = Team.all.count %>
+  <tr>
+    <td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.overall_pick %></td>
+    <td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.round %></td>
+    <td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.team.player_name %></td>
+    <% if draft.player.present? %>
       <td style="font-size:14px;color:#777777;padding-top:0px;">
-        <%= link_to "#{player.first_name}  #{player.last_name} #{player.nfl_team}(#{player.bye_week}) #{player.position}", player.url, {:style=>"font-size:14px;"} -%>
-        <%= link_to "edit", edit_player_path(player), {:style=>"font-size:12px;"} if session[:admin] %>
+        <%= link_to "#{draft.player.name} #{draft.player.nfl_team}(#{draft.player.bye_week}) #{draft.player.position}", draft.player.url, {:style=>"font-size:14px;"} -%>
+        <%= link_to "edit", edit_player_path(draft.player), {:style=>"font-size:12px;"} if session[:admin] %>
       </td>
-		<% else %>
-			<td style="font-size:14px;color:#777777;padding-top:0px;">&nbsp;</td>
-		<% end %>
-	</tr>
+    <% else %>
+      <td style="font-size:14px;color:#777777;padding-top:0px;">&nbsp;</td>
+    <% end %>
+  </tr>
 <% end %>
 </table>
 
