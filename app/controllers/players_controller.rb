@@ -3,25 +3,17 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.xml
   def index
-    @quarter_b =  Player.available.order("rank").limit(5).where("position LIKE ?", "QB")
-    @running_b =  Player.available.order("rank").limit(5).where("position LIKE ?", "RB")
-    @place_k   =  Player.available.order("rank").limit(5).where("position LIKE ?", "PK")
-    @tight_e   =  Player.available.order("rank").limit(5).where("position LIKE ?", "TE")
-    @defense   =  Player.available.order("rank").limit(5).where("position LIKE ?", "Def")
-    @wide_r    =  Player.available.order("rank").limit(5).where("position LIKE ?", "WR")
+    @quarter_b =  Player.available.quaterbacks.by_ranking.limit(5)
+    @running_b =  Player.available.running_backs.by_ranking.limit(5)
+    @place_k   =  Player.available.place_kickers.by_ranking.limit(5)
+    @tight_e   =  Player.available.tight_ends.by_ranking.limit(5)
+    @defense   =  Player.available.defenses.by_ranking.limit(5)
+    @wide_r    =  Player.available.wide_receivers.by_ranking.limit(5)
 
-#    t = Player.arel_table
-#    @quarter_b =  Player.order("rank").limit(5).where(t[:position].matches('%QB'))
-#    @running_b =  Player.order("rank").limit(5).where(t[:position].matches('%RB'))
-#    @place_k   =  Player.order("rank").limit(5).where(t[:position].matches('%K'))
-#    @tight_e   =  Player.order("rank").limit(5).where(t[:position].matches('%TE'))
-#    @defense   =  Player.order("rank").limit(5).where(t[:position].matches('%D/S'))
-#    @wide_r    =  Player.order("rank").limit(5).where(t[:position].matches('%WR'))
-    
     if params[:selected]
-     @players = @players.where(:selected => (params[:selected] == "1"))
+      @players = @players.where(:selected => (params[:selected] == "1"))
     end
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @players }
@@ -79,7 +71,7 @@ class PlayersController < ApplicationController
     if params[:player] && params[:player][:selected] && params[:player][:pick]
       @player.team = Team.with_pick(params[:player][:pick].to_i)
     end
-    
+
     respond_to do |format|
       if @player.update_attributes(params[:player])
         format.html { redirect_to(:action => 'assignment') }
@@ -102,7 +94,7 @@ class PlayersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   def round
    @players = Player.picked.order("pick")
   end
@@ -111,7 +103,7 @@ class PlayersController < ApplicationController
     @player = Player.available.by_position(params[:position]).order("rank")
     @teams = Team.order("name")
   end
-  
+
  def authenticate
     authenticate_or_request_with_http_basic do |username, password|
       if username == "admin" && password == "ransom"

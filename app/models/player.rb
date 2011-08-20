@@ -1,15 +1,17 @@
 class Player < ActiveRecord::Base
   has_one     :draft
 
-  scope :available, where("team_id is ?", nil)
+  scope :by_ranking, order(:average_pick)
+  scope :picked, includes(:draft).where("drafts.id IS NOT NULL")
+  scope :available, includes(:draft).where("drafts.id IS NULL")
 
-  scope :picked, where( "team_id is NOT ?", nil )
-
-  scope :for_pick, lambda {|pick_number| where("pick = ?", pick_number) }
-
-  scope :full_name, lambda {|name| where("name = ?", name)}
-
-  scope :by_position, lambda {|position| where("position = ?", "#{position}") }
+  scope :for_position, lambda{|position| where('players.position = ?', position)}
+  scope :quaterbacks,     for_position('QB')
+  scope :running_backs,   for_position('RB')
+  scope :wide_receivers,  for_position('WR')
+  scope :tight_ends,      for_position('TE')
+  scope :place_kickers,   for_position('PK')
+  scope :defenses,        for_position('DEF')
 
   NFLTeamByeWeeks = {
     'BAL' => 5, 'CLE' => 5, 'DAL' => 5, 'MIA' => 5, 'STL' => 5, 'WAS' => 5,
