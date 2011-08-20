@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
   has_one     :draft
 
-  scope :by_ranking, order(:average_pick)
+  scope :by_ranking, where('players.average_pick IS NOT NULL').order(:average_pick)
   scope :picked, includes(:draft).where("drafts.id IS NOT NULL")
   scope :available, includes(:draft).where("drafts.id IS NULL")
 
