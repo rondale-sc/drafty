@@ -15,7 +15,7 @@
     <td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.team.player_name %></td>
     <% if draft.player.present? %>
       <td style="font-size:14px;color:#777777;padding-top:0px;">
-        <%= link_to "#{draft.player.name} #{draft.player.nfl_team}(#{draft.player.bye_week}) #{draft.player.position}", draft.player.url, {:style=>"font-size:14px;"} -%>
+        <%= link_to "#{draft.player.name} #{draft.player.nfl_team}(#{draft.player.bye_week}) #{draft.player.position}", draft.player.url, {:style=>"font-size:14px;", :target => "blank" } -%>
         <%= link_to "edit", edit_player_path(draft.player), {:style=>"font-size:12px;"} if session[:admin] %>
       </td>
     <% else %>
