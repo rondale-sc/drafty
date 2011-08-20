@@ -11,7 +11,7 @@ Team.create(:id => 7,  :player_name => 'Swain Strickland',    :name => 'SwainTra
 Team.create(:id => 8,  :player_name => 'Rickey Roach',        :name => 'Nimbly Bimblies',     :draft_order => 2)
 Team.create(:id => 9,  :player_name => 'Janelle Roach',       :name => 'Janelle Roach',       :draft_order => 10)
 Team.create(:id => 10, :player_name => 'Jacquie Jackson',     :name => 'The Starbucks',       :draft_order => 13)
-Team.create(:id => 11, :player_name => 'John Jackson',        :name => 'John Jackson',        :draft_order => 1)
+Team.create(:id => 11, :player_name => 'John Jackson',        :name => 'Jackson Alpha\'s',        :draft_order => 1)
 Team.create(:id => 12, :player_name => 'Jason Vanderburgh',   :name => 'Burghermeisters',     :draft_order => 14)
 Team.create(:id => 13, :player_name => 'Paul Welch',          :name => 'Covert Penguins',     :draft_order => 4)
 Team.create(:id => 14, :player_name => 'Spencer Strickland',  :name => 'Spencer for Hire',    :draft_order => 7)
