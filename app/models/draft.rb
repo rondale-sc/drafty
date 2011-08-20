@@ -2,6 +2,12 @@ class Draft < ActiveRecord::Base
   belongs_to :team
   belongs_to :player
 
+  scope :draft_order, order(:overall_pick)
+  scope :pending, where('drafts.player_id IS NULL')
+  scope :finalized, where('drafts.player_id IS NOT NULL')
+
+  validates_uniqueness_of :player_id, :allow_nil => true
+
   def self.current_pick
     where("player_id is NULL").limit(1).first
   end
@@ -15,7 +21,7 @@ class Draft < ActiveRecord::Base
   end
 
   def self.populate
-    teams = Team.draft_order
+    teams = Team.draft_order.all
 
     (1..16).step(2) do |round|
       teams.each_with_index do |team, index|
