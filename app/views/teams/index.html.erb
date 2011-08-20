@@ -6,7 +6,7 @@
 <table>
   <th style="text-decoration:none;"><span style="text-decoration:underline;"><%=team.name %></span>&nbsp;<span style="font-size:12px;color:#777777;text-decoration:none;">(<%= team.player_name %>)</span>
   </span>
-  <% team.drafts.each do |draft| %>
+  <% team.drafts.order("round").each do |draft| %>
 
   <tr><td style="font-size:14px;color:#777777;padding-top:0px;"><%= draft.round%>. <%= draft.player.name + " " + draft.player.position if draft.player.present? %></td></tr>
 
