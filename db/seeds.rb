@@ -15,3 +15,9 @@ Team.create(:id => 11, :player_name => 'John Jackson',        :name => 'John Jac
 Team.create(:id => 12, :player_name => 'Jason Vanderburgh',   :name => 'Jason Vanderburgh',   :draft_order => 14)
 Team.create(:id => 13, :player_name => 'Paul Welch',          :name => 'Covert Penguins',     :draft_order => 4)
 Team.create(:id => 14, :player_name => 'Spencer Strickland',  :name => 'Spencer for Hire',    :draft_order => 7)
+
+Player.populate
+Player.update_rankings
+
+Draft.populate
+
