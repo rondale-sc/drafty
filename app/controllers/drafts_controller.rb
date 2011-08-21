@@ -59,7 +59,7 @@ class DraftsController < ApplicationController
   # PUT /drafts/1.xml
   def update
     @draft = Draft.find(params[:id])
-
+    Draft.start_draft_clock
     respond_to do |format|
       if @draft.update_attributes(params[:draft])
         format.html { redirect_to(drafts_url, :notice => 'Draft was successfully updated.') }
