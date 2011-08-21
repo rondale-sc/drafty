@@ -7,8 +7,7 @@
   <tr class="livesearch <%= cycle("even", "odd")%>">
     <td id="search">
       <span class="position">(<%= index + 1 -%>)&nbsp;</span>
-      <%= link_to "#{player.name} #{player.nfl_team}(#{player.bye_week}) #{player.position}", player.url, {:id => 'search', :target => "blank"} -%>
-      <%= link_to "edit", edit_player_path(player) if session[:admin] %>
+      <%= player_link(player) -%>
     </td>
   </tr>
 <% end %>

@@ -5,7 +5,7 @@ class Player < ActiveRecord::Base
   scope :picked, includes(:draft).where("drafts.id IS NOT NULL")
   scope :available, includes(:draft).where("drafts.id IS NULL")
 
-  scope :for_position, lambda{ |position| 
+  scope :for_position, lambda{ |position|
       return self.scoped if position.blank?
       where('players.position = ?', position)
     }
@@ -24,6 +24,23 @@ class Player < ActiveRecord::Base
     'CAR' => 9, 'DET' => 9, 'JAC' => 9, 'MIN' => 9,
     'HOU' => 11, 'IND' => 11, 'NOS' => 11, 'PIT' => 11
   }
+
+  def self.update_injury_status
+    draft_positions = Nokogiri::XML(open("http://football.myfantasyleague.com/#{Time.now.year}/export?TYPE=adp&IS_PPR=1&IS_MOCK=0"))
+
+    draft_positions.xpath("//player").each do |mfl_player|
+      player = Player.find_by_mfl_player_id(mfl_player.attributes['id'].value)
+      next if player.nil?
+
+      player.update_attributes(
+        :average_pick => mfl_player.attributes['averagePick'].value,
+        :minimum_pick => mfl_player.attributes['minPick'].value,
+        :maximum_pick => mfl_player.attributes['maxPick'].value
+      )
+
+      player.save!
+    end
+  end
 
   def self.update_rankings
     draft_positions = Nokogiri::XML(open("http://football.myfantasyleague.com/#{Time.now.year}/export?TYPE=adp&IS_PPR=1&IS_MOCK=0"))

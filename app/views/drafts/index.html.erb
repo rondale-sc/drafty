@@ -1,6 +1,11 @@
 <h1>Listing drafts</h1>
-<%= button_to 'Start Clock', start_draft_clock_path, :method => :post %>
-<%= button_to 'Stop Clock', stop_draft_clock_path, :method => :post %>
+<div class="grid_4 column">
+  <%= button_to 'Start Clock', start_draft_clock_path, :method => :post %>
+  <%= button_to 'Stop Clock', stop_draft_clock_path, :method => :post %>
+</div>
+<div class="grid_4 column">
+  <%= render 'players/upcoming_picks' %>
+</div>
 <br/>
 
 <table>
@@ -18,7 +23,7 @@
     <td><%= draft.round %></td>
     <td><%= draft.overall_pick %></td>
     <td><%= draft.team.player_name %></td>
-    <td><%= draft.player.name if draft.player.present? %></td>
+    <td><%= player_link(draft.player) if draft.player.present? %></td>
     <td><%= draft.draft_time.localtime.strftime('%H:%M') if draft.draft_time %></td>
     <td><%= link_to 'Edit', edit_draft_path(draft) %></td>
   </tr>

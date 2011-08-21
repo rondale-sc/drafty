@@ -2,21 +2,17 @@
 <% increment = 0 %>
 
 <% @teams.each do |team| %>
-
+<span style="text-decoration:underline;"><%=team.name %></span>&nbsp;<span style="font-size:12px;color:#777777;text-decoration:none;">(<%= team.player_name %>)</span>
+</span>
 <table>
-  <th style="text-decoration:none;"><span style="text-decoration:underline;"><%=team.name %></span>&nbsp;<span style="font-size:12px;color:#777777;text-decoration:none;">(<%= team.player_name %>)</span>
-  </span>
   <% team.drafts.order("round").each do |draft| %>
-
-  <tr class="<%= cycle("even","odd")%>"><td style="font-size:20px;color:#777777;padding-top:10px;"><%= draft.round%>. <%= draft.player.name + " " + draft.player.position if draft.player.present? %></td></tr>
-
+    <tr class="<%= cycle("even","odd")%>">
+      <td style="font-size:20px;color:#777777;padding-top:10px;width:35px;"><%= draft.round %>.</td>
+      <td style="font-size:20px;color:#777777;padding-top:10px;"><%= player_link(draft.player) if draft.player.present? %></td>
+    </tr>
   <%end%>
 
-  <tr><td style="color:#627aad;font-size:12px;text-align:right;padding-top:0px;text-decoration:none;">(<%= team.drafts.pending.count %> players left)</td></tr>
+  <tr><td colspan=2 style="color:#627aad;font-size:12px;text-align:right;padding-top:0px;text-decoration:none;">(<%= team.drafts.pending.count %> players left)</td></tr>
   <hr/>
 </table>
 <%end%>
-
-<% content_for :refresh_tag do %>
-  <meta http-equiv="refresh" content="10"/>
-<% end %>

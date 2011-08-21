@@ -1,21 +1,6 @@
 module ApplicationHelper
 
- #TODO
-  def get_picked_player(pick)
-    @players ||= Player.picked
-
-    @players.select{|p| p.pick == pick}.first
-  end
-
-  def current_pick
-    Draft.current_pick
-  end
-
-  def current_round
-    Draft.current_round
-  end
-
-  def current_team
-    Draft.current_team
+  def player_link(player)
+    link_to "#{player.name} #{player.nfl_team}(#{player.bye_week}) #{player.position}", player.url, {:id => 'search', :target => "blank"}
   end
 end
