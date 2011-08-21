@@ -1,6 +1,9 @@
 class Player < ActiveRecord::Base
   has_one     :draft
 
+  scope :available_only,  lambda{|flag| flag ? available : scoped}
+  scope :healthy_only,    lambda{|flag| flag ? healthy : scoped}
+
   scope :by_ranking, where('players.average_pick IS NOT NULL').order(:average_pick)
   scope :picked, includes(:draft).where("drafts.id IS NOT NULL")
   scope :available, includes(:draft).where("drafts.id IS NULL")
