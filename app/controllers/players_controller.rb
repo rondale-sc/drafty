@@ -9,10 +9,6 @@ class PlayersController < ApplicationController
     @defense   =  Player.available.healthy.defenses.by_ranking.limit(5)
     @wide_r    =  Player.available.healthy.wide_receivers.by_ranking.limit(5)
 
-    if params[:selected]
-      @players = @players.where(:selected => (params[:selected] == "1"))
-    end
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @players }
