@@ -11,7 +11,7 @@
   <tr <%= "bgcolor='lightgreen'" if draft.draft_time && draft.draft_time < Time.now -%>>
     <td><%= draft.round -%></td>
     <td><%= draft.overall_pick -%></td>
-    <td><%= draft.draft_time.localtime.strftime('%H:%M') if draft.draft_time -%></td>
+    <td><%= draft.draft_time.in_time_zone('Eastern Time (US & Canada)').strftime('%H:%M') if draft.draft_time -%></td>
     <td><%= draft.team.player_name -%></td>
   </tr>
 <% end %>
