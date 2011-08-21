@@ -5,6 +5,9 @@ class Player < ActiveRecord::Base
   scope :picked, includes(:draft).where("drafts.id IS NOT NULL")
   scope :available, includes(:draft).where("drafts.id IS NULL")
 
+  scope :injured, where('players.injury_status IN(?)', ['Out','IR'])
+  scope :healthy, where('players.injury_status IS NULL OR players.injury_status NOT IN(?)', ['Out','IR'])
+
   scope :for_position, lambda{ |position|
       return self.scoped if position.blank?
       where('players.position = ?', position)
@@ -26,16 +29,15 @@ class Player < ActiveRecord::Base
   }
 
   def self.update_injury_status
-    draft_positions = Nokogiri::XML(open("http://football.myfantasyleague.com/#{Time.now.year}/export?TYPE=adp&IS_PPR=1&IS_MOCK=0"))
+    draft_positions = Nokogiri::XML(open("http://football.myfantasyleague.com/#{Time.now.year}/export?TYPE=injuries"))
 
-    draft_positions.xpath("//player").each do |mfl_player|
-      player = Player.find_by_mfl_player_id(mfl_player.attributes['id'].value)
+    draft_positions.xpath("//injury").each do |injury|
+      player = Player.find_by_mfl_player_id(injury.attributes['id'].value)
       next if player.nil?
 
       player.update_attributes(
-        :average_pick => mfl_player.attributes['averagePick'].value,
-        :minimum_pick => mfl_player.attributes['minPick'].value,
-        :maximum_pick => mfl_player.attributes['maxPick'].value
+        :injury_status  => injury.attributes['status'].value,
+        :injury_details => injury.attributes['details'].value
       )
 
       player.save!
@@ -60,7 +62,7 @@ class Player < ActiveRecord::Base
   end
 
   def self.populate
-    players = Nokogiri::XML(open("http://football.myfantasyleague.com/#{Time.now.year}/export?TYPE=players&L=&W="))
+    players = Nokogiri::XML(open("http://football.myfantasyleague.com/#{Time.now.year}/export?TYPE=players&L=&W=&DETAILS=1"))
 
     players.xpath("//player").each do |mfl_player|
       player_attributes = {
@@ -68,7 +70,11 @@ class Player < ActiveRecord::Base
         :name           => mfl_player.attributes['name'].value,
         :position       => mfl_player.attributes['position'].value.upcase,
         :nfl_team       => mfl_player.attributes['team'].value,
-        :bye_week       => NFLTeamByeWeeks[mfl_player.attributes['team'].value]
+        :bye_week       => NFLTeamByeWeeks[mfl_player.attributes['team'].value],
+        :fleaflicker_id => mfl_player.attributes['fleaflicker_id'].try(:value),
+        :stats_id       => mfl_player.attributes['stats_id'].try(:value),
+        :fanball_id     => mfl_player.attributes['fanball_id'].try(:value),
+        :cbs_id         => mfl_player.attributes['cbs_id'].try(:value)
       }
 
       next unless ['QB','TE','WR','RB','PK','DEF'].include?(player_attributes[:position])

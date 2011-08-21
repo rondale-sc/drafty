@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110820042318) do
+ActiveRecord::Schema.define(:version => 20110821030709) do
 
   create_table "drafts", :force => true do |t|
     t.integer  "team_id"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(:version => 20110820042318) do
     t.integer  "bye_week"
     t.string   "name"
     t.integer  "mfl_player_id"
+    t.integer  "fleaflicker_id"
+    t.integer  "stats_id"
+    t.integer  "fanball_id"
+    t.integer  "cbs_id"
+    t.string   "injury_status"
+    t.string   "injury_details"
   end
 
   create_table "teams", :force => true do |t|

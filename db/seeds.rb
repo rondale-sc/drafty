@@ -18,6 +18,7 @@ Team.create(:id => 14, :player_name => 'Spencer Strickland',  :name => 'Spencer 
 
 Player.populate
 Player.update_rankings
+Player.update_injury_status
 
 Draft.populate
 
