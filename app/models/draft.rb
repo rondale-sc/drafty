@@ -24,7 +24,7 @@ class Draft < ActiveRecord::Base
   def self.populate
     teams = Team.draft_order.all
 
-    (1..16).step(2) do |round|
+    (1..18).step(2) do |round|
       teams.each_with_index do |team, index|
         Draft.create(
           :team         => team,

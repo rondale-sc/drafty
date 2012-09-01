@@ -23,12 +23,12 @@ class Player < ActiveRecord::Base
   scope :defenses,        for_position('DEF')
 
   NFLTeamByeWeeks = {
-    'BAL' => 5, 'CLE' => 5, 'DAL' => 5, 'MIA' => 5, 'STL' => 5, 'WAS' => 5,
-    'ARI' => 6, 'DEN' => 6, 'KCC' => 6, 'SDC' => 6, 'SEA' => 6, 'TEN' => 6,
-    'BUF' => 7, 'CIN' => 7, 'NEP' => 7, 'NYG' => 7, 'PHI' => 7, 'SFO' => 7,
-    'ATL' => 8, 'CHI' => 8, 'GBP' => 8, 'NYJ' => 8, 'OAK' => 8, 'TBB' => 8,
-    'CAR' => 9, 'DET' => 9, 'JAC' => 9, 'MIN' => 9,
-    'HOU' => 11, 'IND' => 11, 'NOS' => 11, 'PIT' => 11
+    'BAL' => 8, 'CLE' => 10, 'DAL' => 5, 'MIA' => 7, 'STL' => 9, 'WAS' => 10,
+    'ARI' => 10, 'DEN' => 7, 'KCC' => 7, 'SDC' => 7, 'SEA' => 11, 'TEN' => 11,
+    'BUF' => 8, 'CIN' => 8, 'NEP' => 9, 'NYG' => 9, 'PHI' => 7, 'SFO' => 9,
+    'ATL' => 7, 'CHI' => 6, 'GBP' => 10, 'NYJ' => 9, 'OAK' => 5, 'TBB' => 5,
+    'CAR' => 6, 'DET' => 5, 'JAC' => 6, 'MIN' => 11,
+    'HOU' => 18, 'IND' => 4, 'NOS' => 6, 'PIT' => 4
   }
 
   def self.update_injury_status
