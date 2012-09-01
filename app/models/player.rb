@@ -48,7 +48,7 @@ class Player < ActiveRecord::Base
   end
 
   def self.update_rankings
-    draft_positions = Nokogiri::XML(open("http://football.myfantasyleague.com/#{Time.now.year}/export?TYPE=adp&IS_PPR=1&IS_MOCK=0"))
+    draft_positions = Nokogiri::XML(open("http://football.myfantasyleague.com/#{Time.now.year}/export?TYPE=adp&IS_PPR=1&IS_KEEPER=0&IS_MOCK=0&TIME=1345003200"))
 
     draft_positions.xpath("//player").each do |mfl_player|
       player = Player.find_by_mfl_player_id(mfl_player.attributes['id'].value)
@@ -80,7 +80,7 @@ class Player < ActiveRecord::Base
         :cbs_id         => mfl_player.attributes['cbs_id'].try(:value)
       }
 
-      next unless ['QB','TE','WR','RB','PK','DEF'].include?(player_attributes[:position])
+      next unless ['QB','TE','WR','RB','PK','DEF','LB'].include?(player_attributes[:position])
 
       player = Player.find_by_mfl_player_id(player_attributes[:mfl_player_id])
 

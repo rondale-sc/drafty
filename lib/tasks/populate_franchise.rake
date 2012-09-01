@@ -3,27 +3,27 @@ task :populate_franchise => :environment  do
   begin
   @players = {
     "Stephen Jackson" => {
-      :picks => [8, 21, 36],
-      :player_names => ["Peyton Manning", "Ray Rice", "Andre Johnson"]
+      :picks => [],
+      :player_names => []
       },
     "Swain Strickland" => {
-      :picks => [7, 22, 35],
-      :player_names => ["Tony Romo", "Maurice Jones-Drew", "Roddy White"]
+      :picks => [],
+      :player_names => []
     },
     "Jonathan Jackson" => {
-      :player_names => ["Adrian Peterson"]
+      :player_names => []
     },
     "Robert Couch" => {
-      :player_names => ["Chris Johnson"]
+      :player_names => []
     },
     "David Jackson" => {
-      :player_names => ["Larry Fitzgerald"]
+      :player_names => []
     },
     "Laura Jackson" => {
-      :player_names => ["Steven Jackson"]
+      :player_names => []
     },
     "Michelle Jackson" => {
-      :player_names => ["Brett Favre"]
+      :player_names => []
     }
   }
 
