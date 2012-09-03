@@ -4,38 +4,38 @@
 <div id="main">
  <fieldset class="grid_4 column">
     <legend> QuarterBacks </legend>
-    <%= render :partial => "position", :locals => {:position => @quarter_b} %>
+    <%= render :partial => "position", :locals => {:position => @players.for_position("QB")} %>
   </fieldset>
 
   <fieldset class="grid_4 column">
     <legend> Running Backs </legend>
-    <%= render :partial => "position", :locals => {:position => @running_b} %>
+    <%= render :partial => "position", :locals => {:position => @players.for_position("RB")} %>
   </fieldset>
 
   <fieldset class="grid_4 column">
-    <legend> Place Kickers </legend>
-    <%= render :partial => "position", :locals => {:position => @place_k} %>
+    <legend> Line Backers </legend>
+    <%= render :partial => "position", :locals => {:position => @players.for_position("LB")} %>
   </fieldset>
 
   <fieldset class="grid_4 column">
     <legend> Wide Receivers </legend>
-    <%= render :partial => "position", :locals => {:position => @wide_r} %>
+    <%= render :partial => "position", :locals => {:position => @players.for_position("WR")} %>
   </fieldset>
 
   <fieldset class="grid_4 column">
     <legend> Defense </legend>
-    <%= render :partial => "position", :locals => {:position => @defense} %>
+    <%= render :partial => "position", :locals => {:position => @players.for_position("DEF")} %>
   </fieldset>
 
   <fieldset class="grid_4 column">
     <legend> Tight Ends </legend>
-      <%= render :partial => "position", :locals => {:position => @tight_e} %>
+      <%= render :partial => "position", :locals => {:position => @players.for_position("TE")} %>
     </fieldset>
   </div>
 
 <script type="text/javascript" charset="utf-8">
   setTimeout('window.location = "/"', 7000)
-  window.location.hash="below_header"; 
+  window.location.hash="below_header";
 </script>
 
 <% content_for :refresh_tag do %>
